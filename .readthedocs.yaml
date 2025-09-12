@@ -12,18 +12,7 @@ python:
 sphinx:
   configuration: docs/source/conf.py
 
-# Налаштування для приховування реклами
-# (працює тільки для платних акаунтів)
-features:
-  - search.highlighting
-
-# Додаткові налаштування
+# Додаткові формати документації
 formats:
   - pdf
   - htmlzip
-
-# Налаштування для кращого SEO та індексації
-search:
-  ranking:
-    api/index.rst: 2
-    usage.rst: 3
