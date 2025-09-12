@@ -49,12 +49,12 @@ html_theme_options = {
     'prev_next_buttons_location': 'bottom',
     'style_external_links': False,
     'style_nav_header_background': '#2980B9',
-    # Важливі налаштування для контролю контенту
+    # Ключові налаштування для контролю навігації
     'collapse_navigation': False,
     'sticky_navigation': True,
-    'navigation_depth': 4,
+    'navigation_depth': 1,  # Змінено з 4 на 1 - показувати лише перший рівень
     'includehidden': True,
-    'titles_only': False
+    'titles_only': True     # Змінено з False на True - показувати лише заголовки документів
 }
 
 # -- Options for EPUB output
