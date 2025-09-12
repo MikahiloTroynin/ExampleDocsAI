@@ -1,4 +1,4 @@
-// JavaScript для видалення рекламних блоків ReadTheDocs
+// JavaScript для видалення рекламних блоків та версійних елементів ReadTheDocs
 
 (function() {
     'use strict';
@@ -38,9 +38,9 @@
         });
     }
 
-    // Основна функція видалення реклами
-    function removeAds() {
-        // Список селекторів для видалення
+    // Основна функція видалення реклами та версійних елементів
+    function removeAdsAndVersions() {
+        // Список селекторів для видалення реклами
         const adSelectors = [
             '.ethical-ads',
             '.ethical-ads-container',
@@ -60,8 +60,30 @@
             'iframe[src*="ethical"]'
         ];
 
-        // Видаляємо елементи за селекторами
+        // Список селекторів для видалення версійних елементів
+        const versionSelectors = [
+            '.rst-versions',
+            '.rst-other-versions', 
+            '.rst-current-version',
+            '.wy-nav-top',
+            '.version',
+            '.version-info',
+            'div[data-toggle="rst-versions"]',
+            '.rst-versions.rst-badge',
+            '.theme-switcher',
+            'div[class*="version"]',
+            'span[class*="version"]',
+            '.badge',
+            '.label-version'
+        ];
+
+        // Видаляємо рекламні елементи
         adSelectors.forEach(selector => {
+            removeElements(selector);
+        });
+
+        // Видаляємо версійні елементи
+        versionSelectors.forEach(selector => {
             removeElements(selector);
         });
 
@@ -70,7 +92,12 @@
         removeElementsWithText('div', 'Advertisement');
         removeElementsWithText('div', 'Sponsored');
 
-        // Перевіряємо бокову панель на наявність реклами
+        // Видаляємо елементи що містять версійний текст
+        removeElementsWithText('div', 'latest');
+        removeElementsWithText('span', 'latest');
+        removeElementsWithText('a', 'latest');
+
+        // Перевіряємо бокову панель на наявність реклами та версійних елементів
         const sideNav = document.querySelector('.wy-nav-side');
         if (sideNav) {
             const children = sideNav.children;
@@ -89,7 +116,9 @@
                     child.textContent.includes('Ad by') ||
                     child.textContent.includes('Advertisement') ||
                     child.textContent.includes('Sponsored') ||
-                    child.textContent.includes('EthicalAds')
+                    child.textContent.includes('EthicalAds') ||
+                    child.textContent.includes('latest') ||
+                    child.textContent.includes('version')
                 )) {
                     child.remove();
                 } else if (child.style.background || 
@@ -101,7 +130,24 @@
             }
         }
 
-        console.log('ReadTheDocs ads removal script executed');
+        // Видаляємо ReadTheDocs floating badge
+        const readTheDocsBadge = document.querySelector('.rst-versions.rst-badge');
+        if (readTheDocsBadge) {
+            readTheDocsBadge.remove();
+        }
+
+        // Компенсуємо відсутність верхньої панелі
+        const contentWrap = document.querySelector('.wy-nav-content-wrap');
+        if (contentWrap) {
+            contentWrap.style.marginTop = '0';
+        }
+
+        const sideNavElement = document.querySelector('.wy-nav-side');
+        if (sideNavElement) {
+            sideNavElement.style.top = '0';
+        }
+
+        console.log('ReadTheDocs ads and version removal script executed');
     }
 
     // MutationObserver для відстеження динамічно додаваних елементів
@@ -111,14 +157,17 @@
                 if (mutation.type === 'childList') {
                     mutation.addedNodes.forEach(function(node) {
                         if (node.nodeType === 1) { // Element node
-                            // Перевіряємо чи новий елемент - реклама
-                            const isAd = node.classList && (
+                            // Перевіряємо чи новий елемент - реклама або версійний елемент
+                            const isAdOrVersion = node.classList && (
                                 node.classList.contains('ethical-ads') ||
                                 node.classList.contains('carbonads') ||
-                                node.textContent?.includes('Ad by')
+                                node.classList.contains('rst-versions') ||
+                                node.classList.contains('version') ||
+                                node.textContent?.includes('Ad by') ||
+                                node.textContent?.includes('latest')
                             );
                             
-                            if (isAd) {
+                            if (isAdOrVersion) {
                                 node.remove();
                             }
                         }
@@ -136,22 +185,29 @@
     // Запускаємо після завантаження DOM
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-            removeAds();
+            removeAdsAndVersions();
             setupMutationObserver();
             
-            // Повторно запускаємо через 1 секунду для динамічно завантажуваної реклами
-            setTimeout(removeAds, 1000);
-            setTimeout(removeAds, 3000);
+            // Повторно запускаємо через певні інтервали для динамічно завантажуваних елементів
+            setTimeout(removeAdsAndVersions, 1000);
+            setTimeout(removeAdsAndVersions, 3000);
+            setTimeout(removeAdsAndVersions, 5000);
         });
     } else {
-        removeAds();
+        removeAdsAndVersions();
         setupMutationObserver();
-        setTimeout(removeAds, 1000);
+        setTimeout(removeAdsAndVersions, 1000);
+        setTimeout(removeAdsAndVersions, 3000);
     }
 
     // Додаємо обробник для зміни хешу (навігація)
     window.addEventListener('hashchange', function() {
-        setTimeout(removeAds, 500);
+        setTimeout(removeAdsAndVersions, 500);
+    });
+
+    // Додаємо обробник для зміни історії браузера
+    window.addEventListener('popstate', function() {
+        setTimeout(removeAdsAndVersions, 500);
     });
 
 })();
