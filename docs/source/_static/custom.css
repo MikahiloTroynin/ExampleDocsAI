@@ -56,7 +56,7 @@ div[id*="ads-"] {
     padding-right: 0;
 }
 
-/* ============= НОВІ НАЛАШТУВАННЯ ============= */
+/* ============= ПРИХОВУВАННЯ НАВІГАЦІЙНИХ ЕЛЕМЕНТІВ ============= */
 
 /* 1. Приховування посилання "View page source" */
 .wy-breadcrumbs li.wy-breadcrumbs-aside {
@@ -94,10 +94,62 @@ nav[role="navigation"] .btn,
     display: none !important;
 }
 
+/* ============= ПРИХОВУВАННЯ ВЕРСІЙНИХ ЕЛЕМЕНТІВ ============= */
+
+/* Приховування індикатора версії "latest" в правому куті */
+.wy-nav-top a,
+.wy-nav-top .wy-nav-top-home,
+.version {
+    display: none !important;
+}
+
+/* Приховування всієї верхньої навігаційної панелі */
+.wy-nav-top {
+    display: none !important;
+    height: 0 !important;
+}
+
+/* Приховування версійного селектора ReadTheDocs */
+.rst-versions,
+.rst-other-versions,
+.rst-current-version {
+    display: none !important;
+}
+
+/* Приховування версійної інформації в футері */
+.version-info,
+.rst-versions .rst-current-version,
+div[data-toggle="rst-versions"] {
+    display: none !important;
+}
+
+/* Додаткові селектори для версійних елементів */
+div[class*="version"],
+span[class*="version"],
+.badge,
+.label-version {
+    display: none !important;
+}
+
+/* Приховування ReadTheDocs floating panel */
+.rst-versions.rst-badge {
+    display: none !important;
+}
+
+/* Компенсуємо відсутність верхньої панелі */
+.wy-nav-content-wrap {
+    margin-top: 0 !important;
+}
+
+.wy-nav-side {
+    top: 0 !important;
+}
+
 /* Мобільна версія */
 @media screen and (max-width: 768px) {
     .wy-nav-content-wrap {
         margin-left: 0 !important;
+        margin-top: 0 !important;
     }
     
     .wy-nav-content {
@@ -106,7 +158,29 @@ nav[role="navigation"] .btn,
     
     /* Приховування на мобільних пристроях */
     .rst-footer-buttons,
-    .wy-breadcrumbs-aside {
+    .wy-breadcrumbs-aside,
+    .wy-nav-top,
+    .rst-versions {
         display: none !important;
     }
+}
+
+/* ============= ДОДАТКОВІ ПРАВИЛА ДЛЯ READTHEDOCS.ORG ============= */
+
+/* Приховування елементів ReadTheDocs.org */
+.injected .rst-versions,
+.theme-switcher,
+.ethical-ad,
+.keep-us-sustainable {
+    display: none !important;
+}
+
+/* Приховування "Built with Sphinx" */
+.footer p {
+    display: none !important;
+}
+
+/* Приховування посилань на джерела */
+.headerlink {
+    display: none !important;
 }
