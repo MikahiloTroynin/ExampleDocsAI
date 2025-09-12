@@ -56,6 +56,44 @@ div[id*="ads-"] {
     padding-right: 0;
 }
 
+/* ============= НОВІ НАЛАШТУВАННЯ ============= */
+
+/* 1. Приховування посилання "View page source" */
+.wy-breadcrumbs li.wy-breadcrumbs-aside {
+    display: none !important;
+}
+
+/* Альтернативні селектори для View page source */
+a[href*="_sources/"],
+a[title*="View page source"],
+.wy-breadcrumbs-aside a {
+    display: none !important;
+}
+
+/* 2. Приховування кнопок Previous та Next */
+.rst-footer-buttons {
+    display: none !important;
+}
+
+/* Альтернативні селектори для кнопок навігації */
+.btn-neutral[rel="prev"],
+.btn-neutral[rel="next"],
+.fa-arrow-circle-left,
+.fa-arrow-circle-right {
+    display: none !important;
+}
+
+/* Приховування навігаційних посилань в футері */
+.rst-content .document .footer {
+    display: none !important;
+}
+
+/* Додатковий контроль для кнопок навігації */
+nav[role="navigation"] .btn,
+.pagination {
+    display: none !important;
+}
+
 /* Мобільна версія */
 @media screen and (max-width: 768px) {
     .wy-nav-content-wrap {
@@ -64,5 +102,11 @@ div[id*="ads-"] {
     
     .wy-nav-content {
         padding: 1.618em 1.618em;
+    }
+    
+    /* Приховування на мобільних пристроях */
+    .rst-footer-buttons,
+    .wy-breadcrumbs-aside {
+        display: none !important;
     }
 }
