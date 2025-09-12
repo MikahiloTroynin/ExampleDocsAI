@@ -1,29 +1,68 @@
-version: "2"
+/* Приховування рекламних банерів ReadTheDocs */
 
-build:
-  os: "ubuntu-22.04"
-  tools:
-    python: "3.10"
+/* Основні рекламні блоки */
+.ethical-ads,
+.ethical-ads-container,
+.carbonads,
+.carbon-ads,
+div[data-ea-publisher],
+div[data-ea-type],
+.ea-content {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
-python:
-  install:
-    - requirements: docs/requirements.txt
+/* ReadTheDocs специфічні рекламні елементи */
+.rst-content .admonition.note .ethical-ads,
+.wy-side-scroll .ethical-ads,
+.wy-nav-side .ethical-ads {
+    display: none !important;
+}
 
-sphinx:
-  configuration: docs/source/conf.py
+/* Приховування футера з рекламою */
+.rst-footer-buttons .ethical-ads {
+    display: none !important;
+}
 
-# Налаштування для приховування реклами
-# (працює тільки для платних акаунтів)
-features:
-  - search.highlighting
+/* Додаткові селектори для різних типів реклами */
+iframe[src*="ads"],
+iframe[src*="carbon"],
+iframe[src*="ethical"],
+div[class*="ad-"],
+div[id*="ad-"],
+div[class*="ads-"],
+div[id*="ads-"] {
+    display: none !important;
+}
 
-# Додаткові налаштування
-formats:
-  - pdf
-  - htmlzip
+/* Видаляємо простір від прихованих елементів */
+.wy-nav-content-wrap {
+    margin-left: 300px !important;
+}
 
-# Налаштування для кращого SEO та індексації
-search:
-  ranking:
-    api/index.rst: 2
-    usage.rst: 3
+/* Покращуємо відображення контенту без реклами */
+.wy-nav-content {
+    max-width: none !important;
+    padding: 1.618em 3.236em;
+}
+
+/* Фіксимо можливі проблеми з відступами */
+.rst-content {
+    width: 100%;
+    padding-right: 0;
+}
+
+/* Мобільна версія */
+@media screen and (max-width: 768px) {
+    .wy-nav-content-wrap {
+        margin-left: 0 !important;
+    }
+    
+    .wy-nav-content {
+        padding: 1.618em 1.618em;
+    }
+}
