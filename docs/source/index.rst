@@ -17,6 +17,8 @@ Contents
 --------
 
 .. toctree::
+   :titlesonly:
+   :maxdepth: 1
 
    usage
    api
