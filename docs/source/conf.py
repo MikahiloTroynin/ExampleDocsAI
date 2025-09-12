@@ -27,6 +27,9 @@ intersphinx_disabled_domains = ['std']
 
 templates_path = ['_templates']
 
+# Приховуємо посилання на джерело сторінки
+html_show_sourcelink = False
+
 # -- Options for HTML output
 
 html_theme = 'sphinx_rtd_theme'
@@ -46,7 +49,7 @@ html_theme_options = {
     'analytics_anonymize_ip': False,
     'logo_only': False,
     'display_version': True,
-    'prev_next_buttons_location': 'bottom',
+    'prev_next_buttons_location': None,  # Прибираємо кнопки Previous/Next
     'style_external_links': False,
     'style_nav_header_background': '#2980B9',
     # Ключові налаштування для контролю навігації
