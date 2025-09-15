@@ -1,0 +1,4 @@
+RPC Methods
+===========
+
+Hello world
