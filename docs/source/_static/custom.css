@@ -370,3 +370,102 @@
     background-color: var(--hover-bg) !important;
     color: var(--accent-green) !important;
 }
+
+/* ============= РОЗШИРЕННЯ КОНТЕНТНОЇ ОБЛАСТІ НА ПОВНУ ШИРИНУ ============= */
+
+/* Основна обгортка контенту - розширюємо на всю ширину */
+.wy-nav-content-wrap {
+    margin-left: 300px !important; /* Залишаємо тільки відступ для лівої панелі */
+    margin-right: 0 !important; /* ЗМІНА: видаляємо правий відступ */
+    max-width: none !important; /* ЗМІНА: видаляємо обмеження максимальної ширини */
+    background-color: var(--bg-light) !important;
+}
+
+/* Контентна область - використовуємо всю доступну ширину */
+.wy-nav-content {
+    max-width: none !important; /* ЗМІНА: видаляємо обмеження ширини */
+    padding: 0 !important; /* ЗМІНА: видаляємо внутрішні відступи */
+    background-color: var(--bg-light) !important;
+}
+
+/* Контент всередині - налаштовуємо відступи */
+.rst-content {
+    max-width: none !important; /* ЗМІНА: контент використовує всю ширину */
+    margin: 1rem !important; /* Залишаємо невеликі відступи з усіх сторін */
+    padding: 2rem !important; /* Внутрішні відступи для читабельності */
+    background-color: var(--bg-white) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+/* Хлібні крихти також розширюємо */
+.wy-breadcrumbs {
+    max-width: none !important;
+    margin: 1rem 1rem 0 1rem !important; /* Синхронізуємо з контентом */
+}
+
+/* ============= АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ ============= */
+@media screen and (max-width: 768px) {
+    .wy-nav-content-wrap {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+    
+    .rst-content {
+        margin: 0.5rem !important;
+        padding: 1rem !important;
+    }
+    
+    .wy-breadcrumbs {
+        margin: 0.5rem 0.5rem 0 0.5rem !important;
+    }
+}
+
+/* ============= ДОДАТКОВО: ШИРОКІ ТАБЛИЦІ ТА КОД-БЛОКИ ============= */
+
+/* Таблиці використовують всю доступну ширину */
+.rst-content table.docutils {
+    width: 100% !important;
+    table-layout: auto !important; /* Автоматичне розподілення ширини колонок */
+}
+
+/* Блоки коду також використовують всю ширину */
+.rst-content .highlight {
+    width: 100% !important;
+    overflow-x: auto !important; /* Горизонтальний скрол для довгого коду */
+}
+
+.rst-content .highlight pre {
+    white-space: pre !important; /* Зберігаємо форматування коду */
+    word-wrap: normal !important;
+    overflow-x: auto !important;
+}
+
+/* ============= ФІКСАЦІЯ ДЛЯ ПЛАНШЕТІВ ============= */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+    .wy-nav-content-wrap {
+        margin-left: 280px !important; /* Трохи менший відступ на планшетах */
+    }
+}
+
+/* ============= ДОДАТКОВА ОПТИМІЗАЦІЯ ДЛЯ ЧИТАБЕЛЬНОСТІ ============= */
+
+/* Збільшуємо максимальну ширину тексту для покращення читабельності */
+.rst-content p, 
+.rst-content li, 
+.rst-content dd {
+    max-width: none !important; /* Дозволяємо тексту займати всю ширину */
+    line-height: 1.6 !important; /* Покращуємо висоту рядка для читабельності */
+}
+
+/* Адаптація для списків */
+.rst-content ul, 
+.rst-content ol {
+    max-width: none !important;
+}
+
+/* Блоки admonition також використовують повну ширину */
+.rst-content .admonition {
+    max-width: none !important;
+    width: 100% !important;
+}
