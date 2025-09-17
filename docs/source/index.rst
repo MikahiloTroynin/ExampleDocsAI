@@ -5,12 +5,10 @@ Welcome to Mikhail Troinin Portfolio!
 
    This project is under active development.
 
-Contents
---------
-
 .. toctree::
    :maxdepth: 2
    :caption: Documentation examples
+   :hidden:
 
    business process
    api methods
