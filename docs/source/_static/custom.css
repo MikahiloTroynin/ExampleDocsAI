@@ -18,11 +18,30 @@
     --search-placeholder: #4a5568;
 }
 
+/* ============= ПРИХОВУВАННЯ ХЛІБНИХ КРОШОК ============= */
+
+/* ГОЛОВНЕ ПРАВИЛО: Повне приховування хлібних крошок на всіх сторінках */
+.wy-breadcrumbs {
+    display: none !important;
+}
+
+/* АЛЬТЕРНАТИВНО: Приховування тільки на головній сторінці */
+.homepage .wy-breadcrumbs,
+body[data-url-root="./"] .wy-breadcrumbs,
+.rst-content:has(h1:contains("Welcome")) .wy-breadcrumbs {
+    display: none !important;
+}
+
+/* Коли хлібні крошки приховані, корегуємо відступи */
+.rst-content {
+    margin-top: 1rem !important; /* Зменшений верхній відступ замість хлібних крошок */
+}
+
 /* ============= ОСНОВНА КОЛЬОРОВА СХЕМА RTD THEME ============= */
 
 /* Змінюємо кольори бокової панелі */
 .wy-side-nav-search {
-    background-color: var(--primary-dark) !important; /* Тепер #e5edff */
+    background-color: var(--primary-dark) !important; /* Тепер #68d391 */
     background-image: none !important;
 }
 
@@ -75,7 +94,6 @@
     font-weight: bold !important;
 }
 
-/* Решта CSS залишається без змін... */
 /* ============= ЗМІНА 1: БІЛИЙ ФОН ДЛЯ ЛІВОГО ФРЕЙМУ ============= */
 
 /* Головний контейнер лівої навігації */
@@ -411,19 +429,6 @@
     border-color: var(--border-color) !important;
 }
 
-/* Хлібні крихти */
-.wy-breadcrumbs {
-    background-color: var(--bg-light) !important;
-    padding: 0.75rem 1rem !important;
-    border-radius: 8px !important;
-    margin-bottom: 1.5rem !important;
-    border: 1px solid var(--border-color) !important;
-}
-
-.wy-breadcrumbs li a {
-    color: var(--accent-green) !important;
-}
-
 /* Скролбар для навігації */
 .wy-side-scroll::-webkit-scrollbar {
     width: 6px;
@@ -526,12 +531,6 @@
     box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
 }
 
-/* Хлібні крихти також розширюємо */
-.wy-breadcrumbs {
-    max-width: none !important;
-    margin: 1rem 1rem 0 1rem !important; /* Синхронізуємо з контентом */
-}
-
 /* ============= АДАПТАЦІЯ ДЛЯ МОБІЛЬНИХ ПРИСТРОЇВ ============= */
 @media screen and (max-width: 768px) {
     .wy-nav-content-wrap {
@@ -542,10 +541,6 @@
     .rst-content {
         margin: 0.5rem !important;
         padding: 1rem !important;
-    }
-    
-    .wy-breadcrumbs {
-        margin: 0.5rem 0.5rem 0 0.5rem !important;
     }
 }
 
