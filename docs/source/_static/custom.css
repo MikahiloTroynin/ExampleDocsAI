@@ -37,10 +37,24 @@
     border-color: var(--primary-green) !important;
 }
 
+/* ============= ЗМІНА 1: БІЛИЙ ФОН ДЛЯ ЛІВОГО ФРЕЙМУ ============= */
+
+/* Головний контейнер лівої навігації */
+.wy-nav-side {
+    background-color: var(--bg-white) !important;
+}
+
+/* Скролюваний контейнер навігації */
+.wy-side-scroll {
+    background-color: var(--bg-white) !important;
+}
+
 /* Навігаційне меню */
 .wy-menu-vertical {
     background-color: var(--bg-white) !important;
 }
+
+/* ============= ЗМІНА 2: HOVER ЕФЕКТ ДЛЯ АКТИВНОГО РОЗДІЛУ ============= */
 
 .wy-menu-vertical li.toctree-l1 > a {
     color: var(--text-dark) !important;
@@ -59,8 +73,10 @@
     border-right: 3px solid var(--dark-green) !important;
 }
 
-.wy-menu-vertical li.current a:hover {
+/* КЛЮЧОВА ЗМІНА: Hover для активного розділу робить текст білим */
+.wy-menu-vertical li.current > a:hover {
     background-color: var(--accent-green) !important;
+    color: white !important; /* Змінено: тепер текст білий при hover */
 }
 
 /* Підрозділи навігації */
@@ -80,6 +96,12 @@
     color: var(--primary-dark) !important;
 }
 
+/* ДОДАТКОВА ЗМІНА: Hover для активних підрозділів також білий текст */
+.wy-menu-vertical li.toctree-l2.current > a:hover {
+    background-color: var(--accent-green) !important;
+    color: white !important; /* Додано для консистентності */
+}
+
 /* Більш глибокі рівні навігації */
 .wy-menu-vertical li.toctree-l3 > a,
 .wy-menu-vertical li.toctree-l4 > a {
@@ -93,9 +115,18 @@
     color: var(--accent-green) !important;
 }
 
+/* Активні глибші рівні також отримують білий текст при hover */
+.wy-menu-vertical li.toctree-l3.current > a:hover,
+.wy-menu-vertical li.toctree-l4.current > a:hover {
+    background-color: var(--accent-green) !important;
+    color: white !important;
+}
+
+/* ============= ЗМІНА 3: НИЖНЯ ЧАСТИНА ОСНОВНОГО ВІКНА ============= */
+
 /* Контентна область */
 .wy-nav-content {
-    background-color: var(--bg-light) !important;
+    background-color: var(--bg-light) !important; /* Вже #f7fafc */
 }
 
 .rst-content {
@@ -104,6 +135,11 @@
     padding: 2rem !important;
     margin: 1rem !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+
+/* Додатковий стиль для гарантії що нижня частина має потрібний колір */
+.wy-nav-content-wrap {
+    background-color: var(--bg-light) !important; /* #f7fafc */
 }
 
 /* Заголовки */
@@ -452,6 +488,11 @@ div[data-toggle="rst-versions"] {
     .wy-side-nav-search > a:before {
         font-size: 14px;
         margin-right: 6px;
+    }
+
+    /* Білий фон для лівої панелі на мобільних */
+    .wy-nav-side {
+        background-color: var(--bg-white) !important;
     }
 }
 
