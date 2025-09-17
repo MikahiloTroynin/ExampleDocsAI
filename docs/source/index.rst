@@ -10,7 +10,9 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Documentation Contents
+   :caption: Documentation examples
 
    business process
    api methods
+   product architecture
+   product specification
