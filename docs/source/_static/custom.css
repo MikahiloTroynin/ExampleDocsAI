@@ -245,30 +245,149 @@
     padding: 2px 6px !important;
 }
 
-/* Admonition блоки */
+/* ============= ADMONITION БЛОКИ З СТАНДАРТНИМИ RTD КОЛЬОРАМИ ============= */
+
+/* Базові стилі для всіх admonitions */
 .rst-content .admonition {
     border-radius: 8px !important;
-    border-left: 4px solid var(--accent-green) !important;
-    background: linear-gradient(135deg, rgba(104,211,145,0.1), rgba(154,230,180,0.1)) !important;
-    border-color: var(--primary-green) !important;
+    border-left: 4px solid #cccccc !important; /* Базовий сірий колір */
+    background-color: #f8f9fa !important; /* Світло-сірий фон */
+    padding: 12px !important;
+    margin: 1.5em 0 !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
 }
 
 .rst-content .admonition .admonition-title {
-    background-color: var(--accent-green) !important;
+    background-color: #6c757d !important; /* Сірий заголовок за замовчуванням */
     color: white !important;
     border-radius: 4px 4px 0 0 !important;
+    padding: 8px 12px !important;
+    margin: -12px -12px 12px -12px !important;
+    font-weight: bold !important;
+    font-size: 0.9em !important;
 }
 
+/* ============= КОНКРЕТНІ ТИПИ ADMONITIONS ============= */
+
+/* NOTE - синій колір */
 .rst-content .admonition.note {
-    border-left-color: var(--primary-green) !important;
+    border-left-color: #3498db !important;
+    background-color: #ebf3fd !important;
 }
 
+.rst-content .admonition.note .admonition-title {
+    background-color: #3498db !important;
+}
+
+/* TIP/HINT - зелений колір */
+.rst-content .admonition.tip,
+.rst-content .admonition.hint {
+    border-left-color: #27ae60 !important;
+    background-color: #eafaf1 !important;
+}
+
+.rst-content .admonition.tip .admonition-title,
+.rst-content .admonition.hint .admonition-title {
+    background-color: #27ae60 !important;
+}
+
+/* WARNING - жовто-оранжевий колір */
 .rst-content .admonition.warning {
-    border-left-color: #f59e0b !important;
+    border-left-color: #f39c12 !important;
+    background-color: #fef9e7 !important;
 }
 
-.rst-content .admonition.danger {
-    border-left-color: #ef4444 !important;
+.rst-content .admonition.warning .admonition-title {
+    background-color: #f39c12 !important;
+}
+
+/* CAUTION - жовтий колір */
+.rst-content .admonition.caution {
+    border-left-color: #f1c40f !important;
+    background-color: #fefbf3 !important;
+}
+
+.rst-content .admonition.caution .admonition-title {
+    background-color: #f1c40f !important;
+}
+
+/* ATTENTION - помаранчевий колір */
+.rst-content .admonition.attention {
+    border-left-color: #e67e22 !important;
+    background-color: #fdf2e9 !important;
+}
+
+.rst-content .admonition.attention .admonition-title {
+    background-color: #e67e22 !important;
+}
+
+/* DANGER/ERROR - червоний колір */
+.rst-content .admonition.danger,
+.rst-content .admonition.error {
+    border-left-color: #e74c3c !important;
+    background-color: #fdedec !important;
+}
+
+.rst-content .admonition.danger .admonition-title,
+.rst-content .admonition.error .admonition-title {
+    background-color: #e74c3c !important;
+}
+
+/* IMPORTANT - темно-синій колір */
+.rst-content .admonition.important {
+    border-left-color: #2c3e50 !important;
+    background-color: #ebedef !important;
+}
+
+.rst-content .admonition.important .admonition-title {
+    background-color: #2c3e50 !important;
+}
+
+/* SEEALSO - фіолетовий колір */
+.rst-content .admonition.seealso {
+    border-left-color: #9b59b6 !important;
+    background-color: #f4f1f7 !important;
+}
+
+.rst-content .admonition.seealso .admonition-title {
+    background-color: #9b59b6 !important;
+}
+
+/* GENERIC/CUSTOM admonition - використовує базовий стиль */
+.rst-content .admonition.admonition-generic {
+    border-left-color: #95a5a6 !important;
+    background-color: #f8f9fa !important;
+}
+
+.rst-content .admonition.admonition-generic .admonition-title {
+    background-color: #95a5a6 !important;
+}
+
+/* ============= ДОДАТКОВІ СТИЛІ ДЛЯ ПОКРАЩЕННЯ ============= */
+
+/* Стилізація тексту всередині admonitions */
+.rst-content .admonition p {
+    margin-bottom: 0.5em !important;
+}
+
+.rst-content .admonition p:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Стилі для списків в admonitions */
+.rst-content .admonition ul,
+.rst-content .admonition ol {
+    margin: 0.5em 0 !important;
+    padding-left: 1.5em !important;
+}
+
+/* Стилі для коду в admonitions */
+.rst-content .admonition code.literal {
+    background-color: rgba(0,0,0,0.05) !important;
+    border: 1px solid rgba(0,0,0,0.1) !important;
+    border-radius: 3px !important;
+    padding: 2px 4px !important;
+    font-size: 0.9em !important;
 }
 
 /* Таблиці */
@@ -477,4 +596,18 @@
 .rst-content .admonition {
     max-width: none !important;
     width: 100% !important;
+}
+
+/* ============= АДАПТАЦІЯ ДЛЯ ТЕМНОЇ ТЕМИ (якщо потрібно) ============= */
+@media (prefers-color-scheme: dark) {
+    .rst-content .admonition {
+        background-color: #1a1a1a !important;
+        color: #e0e0e0 !important;
+    }
+    
+    .rst-content .admonition code.literal {
+        background-color: rgba(255,255,255,0.1) !important;
+        border-color: rgba(255,255,255,0.2) !important;
+        color: #e0e0e0 !important;
+    }
 }
