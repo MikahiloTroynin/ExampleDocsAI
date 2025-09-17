@@ -96,17 +96,15 @@ nav[role="navigation"] .btn,
 
 /* ============= ПРИХОВУВАННЯ ВЕРСІЙНИХ ЕЛЕМЕНТІВ ============= */
 
-/* Приховування індикатора версії "latest" в правому куті */
-.wy-nav-top a,
-.wy-nav-top .wy-nav-top-home,
-.version {
-    display: none !important;
-}
-
-/* Приховування всієї верхньої навігаційної панелі */
+/* Приховування верхньої навігаційної панелі для мобільних */
 .wy-nav-top {
     display: none !important;
     height: 0 !important;
+}
+
+/* Приховування індикатора версії, але НЕ заголовка проекту */
+.wy-side-nav-search .version {
+    display: none !important;
 }
 
 /* Приховування версійного селектора ReadTheDocs */
@@ -123,10 +121,10 @@ div[data-toggle="rst-versions"] {
     display: none !important;
 }
 
-/* Додаткові селектори для версійних елементів */
-div[class*="version"],
-span[class*="version"],
-.badge,
+/* Додаткові селектори для версійних елементів - більш специфічні */
+.rst-versions div[class*="version"],
+.rst-versions span[class*="version"],
+.rst-versions .badge,
 .label-version {
     display: none !important;
 }
@@ -143,6 +141,51 @@ span[class*="version"],
 
 .wy-nav-side {
     top: 0 !important;
+}
+
+/* ============= ЗАМІНА ІКОНКИ БУДИНКА НА ПЕРО ============= */
+
+/* Приховуємо оригінальну іконку будинка */
+.wy-side-nav-search > a .fa-home,
+.wy-side-nav-search > a .fa-house,
+.wy-side-nav-search > a .icon-home {
+    display: none !important;
+}
+
+/* Додаємо іконку пера перед текстом "Portfolio Troynin Mikhailo" */
+.wy-side-nav-search > a:before {
+    content: "🖋️"; /* Unicode символ перьєвої ручки */
+    font-size: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    color: white !important;
+}
+
+/* Забезпечуємо правильне вирівнювання та видимість тексту заголовка */
+.wy-side-nav-search > a {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+
+/* Забезпечуємо видимість пошукового блоку */
+.wy-side-nav-search {
+    display: block !important;
+    visibility: visible !important;
+    background-color: #2980B9;
+    padding: 0.809em;
+}
+
+/* Забезпечуємо видимість поля пошуку */
+.wy-side-nav-search input[type=text] {
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    padding: 6px 12px;
+    margin-top: 0.5rem;
 }
 
 /* Мобільна версія */
@@ -162,6 +205,12 @@ span[class*="version"],
     .wy-nav-top,
     .rst-versions {
         display: none !important;
+    }
+    
+    /* Адаптація іконки пера для мобільних */
+    .wy-side-nav-search > a:before {
+        font-size: 14px;
+        margin-right: 6px;
     }
 }
 
@@ -183,50 +232,4 @@ span[class*="version"],
 /* Приховування посилань на джерела */
 .headerlink {
     display: none !important;
-}
-
-/* ============= ЗАМІНА ІКОНКИ БУДИНКА НА ПЕРО ============= */
-
-/* Приховуємо оригінальну іконку будинка */
-.wy-side-nav-search > a .fa-home,
-.wy-side-nav-search > a .fa-house,
-.icon-home {
-    display: none !important;
-}
-
-/* Додаємо іконку пера перед текстом "Portfolio Troynin Mikhailo" */
-.wy-side-nav-search > a:before {
-    content: "🖋️"; /* Unicode символ перьєвої ручки */
-    font-size: 16px;
-    margin-right: 8px;
-    vertical-align: middle;
-    color: white !important;
-}
-
-/* Альтернативний варіант з Font Awesome іконкою пера (якщо Font Awesome підключено) */
-/*
-.wy-side-nav-search > a:before {
-    content: "\f304";  
-    font-family: "Font Awesome 5 Free", "Font Awesome 5 Pro", FontAwesome;
-    font-weight: 900;
-    font-size: 16px;
-    margin-right: 8px;
-    vertical-align: middle;
-    color: white !important;
-}
-*/
-
-/* Забезпечуємо правильне вирівнювання тексту */
-.wy-side-nav-search > a {
-    display: flex;
-    align-items: center;
-    color: white !important;
-}
-
-/* Додаткове правило для мобільних пристроїв */
-@media screen and (max-width: 768px) {
-    .wy-side-nav-search > a:before {
-        font-size: 14px;
-        margin-right: 6px;
-    }
 }
