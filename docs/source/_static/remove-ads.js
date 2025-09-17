@@ -7,7 +7,10 @@
     function removeElements(selector) {
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => {
-            if (el && el.parentNode) {
+            // НЕ видаляємо заголовок проекту та пошукове поле
+            if (el && el.parentNode && 
+                !el.classList.contains('wy-side-nav-search') &&
+                !el.closest('.wy-side-nav-search')) {
                 el.parentNode.removeChild(el);
             }
         });
@@ -18,7 +21,10 @@
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => {
             if (el.textContent && el.textContent.includes(text)) {
-                if (el && el.parentNode) {
+                // НЕ видаляємо заголовок проекту
+                if (el && el.parentNode && 
+                    !el.classList.contains('wy-side-nav-search') &&
+                    !el.closest('.wy-side-nav-search')) {
                     el.parentNode.removeChild(el);
                 }
             }
@@ -29,12 +35,16 @@
     function hideElements(selector) {
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => {
-            el.style.display = 'none';
-            el.style.visibility = 'hidden';
-            el.style.height = '0';
-            el.style.width = '0';
-            el.style.margin = '0';
-            el.style.padding = '0';
+            // НЕ приховуємо заголовок проекту та пошукове поле
+            if (!el.classList.contains('wy-side-nav-search') &&
+                !el.closest('.wy-side-nav-search')) {
+                el.style.display = 'none';
+                el.style.visibility = 'hidden';
+                el.style.height = '0';
+                el.style.width = '0';
+                el.style.margin = '0';
+                el.style.padding = '0';
+            }
         });
     }
 
@@ -66,13 +76,13 @@
             '.rst-other-versions', 
             '.rst-current-version',
             '.wy-nav-top',
-            '.version',
+            '.wy-side-nav-search .version',  // Більш специфічний селектор
             '.version-info',
             'div[data-toggle="rst-versions"]',
             '.rst-versions.rst-badge',
             '.theme-switcher',
-            'div[class*="version"]',
-            'span[class*="version"]',
+            '.rst-versions div[class*="version"]',  // Більш специфічний
+            '.rst-versions span[class*="version"]',  // Більш специфічний
             '.badge',
             '.label-version'
         ];
@@ -92,10 +102,11 @@
         removeElementsWithText('div', 'Advertisement');
         removeElementsWithText('div', 'Sponsored');
 
-        // Видаляємо елементи що містять версійний текст
-        removeElementsWithText('div', 'latest');
-        removeElementsWithText('span', 'latest');
-        removeElementsWithText('a', 'latest');
+        // Видаляємо елементи що містять версійний текст - але НЕ заголовок проекту
+        const versionTextSelectors = ['.rst-versions', '.version', '.badge'];
+        versionTextSelectors.forEach(selector => {
+            removeElementsWithText(selector, 'latest');
+        });
 
         // Перевіряємо бокову панель на наявність реклами та версійних елементів
         const sideNav = document.querySelector('.wy-nav-side');
@@ -116,14 +127,13 @@
                     child.textContent.includes('Ad by') ||
                     child.textContent.includes('Advertisement') ||
                     child.textContent.includes('Sponsored') ||
-                    child.textContent.includes('EthicalAds') ||
-                    child.textContent.includes('latest') ||
-                    child.textContent.includes('version')
+                    child.textContent.includes('EthicalAds')
                 )) {
                     child.remove();
-                } else if (child.style.background || 
+                } else if (!child.classList.contains('wy-side-nav-search') && 
+                          (child.style.background || 
                           child.style.backgroundColor ||
-                          child.getAttribute('style')?.includes('background')) {
+                          child.getAttribute('style')?.includes('background'))) {
                     // Видаляємо div з фоновими стилями (часто реклама)
                     child.remove();
                 }
@@ -147,6 +157,19 @@
             sideNavElement.style.top = '0';
         }
 
+        // Забезпечуємо видимість заголовка проекту
+        const searchBox = document.querySelector('.wy-side-nav-search');
+        if (searchBox) {
+            searchBox.style.display = 'block';
+            searchBox.style.visibility = 'visible';
+        }
+
+        const searchLink = document.querySelector('.wy-side-nav-search > a');
+        if (searchLink) {
+            searchLink.style.display = 'flex';
+            searchLink.style.visibility = 'visible';
+        }
+
         console.log('ReadTheDocs ads and version removal script executed');
     }
 
@@ -157,14 +180,17 @@
                 if (mutation.type === 'childList') {
                     mutation.addedNodes.forEach(function(node) {
                         if (node.nodeType === 1) { // Element node
+                            // Не видаляємо елементи з пошукового блоку
+                            if (node.closest('.wy-side-nav-search')) {
+                                return;
+                            }
+                            
                             // Перевіряємо чи новий елемент - реклама або версійний елемент
                             const isAdOrVersion = node.classList && (
                                 node.classList.contains('ethical-ads') ||
                                 node.classList.contains('carbonads') ||
                                 node.classList.contains('rst-versions') ||
-                                node.classList.contains('version') ||
-                                node.textContent?.includes('Ad by') ||
-                                node.textContent?.includes('latest')
+                                node.classList.contains('version')
                             );
                             
                             if (isAdOrVersion) {
