@@ -184,3 +184,49 @@ span[class*="version"],
 .headerlink {
     display: none !important;
 }
+
+/* ============= ЗАМІНА ІКОНКИ БУДИНКА НА ПЕРО ============= */
+
+/* Приховуємо оригінальну іконку будинка */
+.wy-side-nav-search > a .fa-home,
+.wy-side-nav-search > a .fa-house,
+.icon-home {
+    display: none !important;
+}
+
+/* Додаємо іконку пера перед текстом "Portfolio Troynin Mikhailo" */
+.wy-side-nav-search > a:before {
+    content: "🖋️"; /* Unicode символ перьєвої ручки */
+    font-size: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    color: white !important;
+}
+
+/* Альтернативний варіант з Font Awesome іконкою пера (якщо Font Awesome підключено) */
+/*
+.wy-side-nav-search > a:before {
+    content: "\f304";  
+    font-family: "Font Awesome 5 Free", "Font Awesome 5 Pro", FontAwesome;
+    font-weight: 900;
+    font-size: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    color: white !important;
+}
+*/
+
+/* Забезпечуємо правильне вирівнювання тексту */
+.wy-side-nav-search > a {
+    display: flex;
+    align-items: center;
+    color: white !important;
+}
+
+/* Додаткове правило для мобільних пристроїв */
+@media screen and (max-width: 768px) {
+    .wy-side-nav-search > a:before {
+        font-size: 14px;
+        margin-right: 6px;
+    }
+}
