@@ -130,9 +130,10 @@
     border-left: 3px solid var(--primary-green) !important;
 }
 
+/* КЛЮЧОВА ЗМІНА: Активний підрозділ тепер має білий текст */
 .wy-menu-vertical li.toctree-l2.current > a {
     background-color: var(--light-green) !important;
-    color: var(--primary-dark) !important;
+    color: white !important; /* ЗМІНА: тепер білий текст замість #68d391 */
 }
 
 /* ДОДАТКОВА ЗМІНА: Hover для активних підрозділів також білий текст */
@@ -152,6 +153,14 @@
 .wy-menu-vertical li.toctree-l4 > a:hover {
     background-color: var(--hover-bg) !important;
     color: var(--accent-green) !important;
+}
+
+/* НОВІ СТИЛІ: Активні глибші рівні з білим текстом */
+.wy-menu-vertical li.toctree-l3.current > a,
+.wy-menu-vertical li.toctree-l4.current > a {
+    background-color: var(--light-green) !important;
+    color: white !important; /* ЗМІНА: білий текст для активних глибших рівнів */
+    border-left: 3px solid var(--primary-green) !important;
 }
 
 /* Активні глибші рівні також отримують білий текст при hover */
