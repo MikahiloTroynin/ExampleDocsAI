@@ -1,6 +1,6 @@
-/* ============= КОЛЬОРОВІ ЗМІННІ (як в tech_docs_site.html) ============= */
+/* ============= КОЛЬОРОВІ ЗМІННІ (оновлені) ============= */
 :root {
-    --primary-dark: #1a365d;
+    --primary-dark: #e5edff;  /* ЗМІНА 1: замінено з #1a365d */
     --primary-green: #68d391;
     --light-green: #9ae6b4;
     --accent-green: #38a169;
@@ -11,32 +11,71 @@
     --text-light: #4a5568;
     --border-color: #e2e8f0;
     --hover-bg: #edf2f7;
+    /* Додаємо нові кольори для гармонії зі світлим заголовком */
+    --search-bg: #ffffff;
+    --search-border: #c6d4ff;
+    --search-text: #4a5568;
+    --search-placeholder: #9ca3af;
 }
 
 /* ============= ОСНОВНА КОЛЬОРОВА СХЕМА RTD THEME ============= */
 
-/* Змінюємо кольори боковій панелі */
+/* Змінюємо кольори бокової панелі */
 .wy-side-nav-search {
-    background-color: var(--primary-dark) !important;
+    background-color: var(--primary-dark) !important; /* Тепер #e5edff */
     background-image: none !important;
 }
 
 .wy-side-nav-search > a {
-    color: white !important;
+    color: var(--text-dark) !important; /* ЗМІНА: змінено з white на темний текст */
     font-weight: bold !important;
 }
 
+/* ЗМІНА 2: Оновлене поле пошуку з прямокутною формою та заокругленням 8px */
 .wy-side-nav-search input[type=text] {
-    background-color: rgba(255,255,255,0.1) !important;
-    border: 1px solid var(--accent-green) !important;
-    color: white !important;
+    background-color: var(--search-bg) !important; /* Білий фон */
+    border: 2px solid var(--search-border) !important; /* Гармонійний бордер */
+    border-radius: 8px !important; /* Заокруглення 8px */
+    color: var(--search-text) !important; /* Темний текст */
+    padding: 8px 12px !important; /* Збільшений padding для кращого вигляду */
+    font-size: 14px !important;
+    transition: all 0.3s ease !important; /* Плавний перехід */
+    width: calc(100% - 24px) !important; /* Враховуємо padding */
+    box-sizing: border-box !important;
 }
 
 .wy-side-nav-search input[type=text]:focus {
-    background-color: rgba(255,255,255,0.2) !important;
-    border-color: var(--primary-green) !important;
+    background-color: var(--search-bg) !important;
+    border-color: var(--accent-green) !important; /* Зелений акцент при фокусі */
+    outline: none !important;
+    box-shadow: 0 0 0 3px rgba(104, 211, 145, 0.1) !important; /* Тінь при фокусі */
 }
 
+.wy-side-nav-search input[type=text]::placeholder {
+    color: var(--search-placeholder) !important; /* Сірий текст placeholder */
+    opacity: 0.8 !important;
+}
+
+/* Оновлюємо стилі для іконки пера, щоб відповідали новому світлому фону */
+.wy-side-nav-search > a:before {
+    content: "🖋️"; /* Unicode символ перьєвої ручки */
+    font-size: 16px;
+    margin-right: 8px;
+    vertical-align: middle;
+    color: var(--text-dark) !important; /* ЗМІНА: тепер темний колір замість білого */
+}
+
+/* Оновлюємо стилі заголовка для кращої читабельності на світлому фоні */
+.wy-side-nav-search > a {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dark) !important; /* ЗМІНА: темний текст замість білого */
+    text-decoration: none !important;
+    font-weight: bold !important;
+}
+
+/* Решта CSS залишається без змін... */
 /* ============= ЗМІНА 1: БІЛИЙ ФОН ДЛЯ ЛІВОГО ФРЕЙМУ ============= */
 
 /* Головний контейнер лівої навігації */
@@ -142,17 +181,17 @@
     background-color: var(--bg-light) !important; /* #f7fafc */
 }
 
-/* Заголовки */
+/* Заголовки - оновлено для роботи зі світлим фоном заголовка */
 .rst-content h1 {
-    color: var(--primary-dark) !important;
-    background: linear-gradient(135deg, var(--primary-dark), var(--accent-green)) !important;
+    color: var(--text-dark) !important; /* ЗМІНА: тепер використовуємо темний текст */
+    background: linear-gradient(135deg, var(--text-dark), var(--accent-green)) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
 }
 
 .rst-content h2 {
-    color: var(--primary-dark) !important;
+    color: var(--text-dark) !important; /* ЗМІНА: тепер темний колір */
     border-bottom: 2px solid var(--primary-green) !important;
 }
 
@@ -173,12 +212,12 @@
 }
 
 .rst-content a:visited {
-    color: var(--primary-dark) !important;
+    color: var(--text-dark) !important; /* ЗМІНА: оновлено колір відвіданих посилань */
 }
 
-/* Блоки коду */
+/* Блоки коду - оновлено для кращого контрасту */
 .rst-content .highlight {
-    background-color: var(--primary-dark) !important;
+    background-color: var(--text-dark) !important; /* Темний фон для контрасту */
     border-radius: 8px !important;
     border-left: 4px solid var(--primary-green) !important;
 }
@@ -275,197 +314,7 @@
     background: var(--accent-green);
 }
 
-/* ============= ПРИХОВУВАННЯ РЕКЛАМНИХ БАНЕРІВ READTHEDOCS ============= */
-
-/* Основні рекламні блоки */
-.ethical-ads,
-.ethical-ads-container,
-.carbonads,
-.carbon-ads,
-div[data-ea-publisher],
-div[data-ea-type],
-.ea-content {
-    display: none !important;
-    visibility: hidden !important;
-    height: 0 !important;
-    width: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-}
-
-/* ReadTheDocs специфічні рекламні елементи */
-.rst-content .admonition.note .ethical-ads,
-.wy-side-scroll .ethical-ads,
-.wy-nav-side .ethical-ads {
-    display: none !important;
-}
-
-/* Приховування футера з рекламою */
-.rst-footer-buttons .ethical-ads {
-    display: none !important;
-}
-
-/* Додаткові селектори для різних типів реклами */
-iframe[src*="ads"],
-iframe[src*="carbon"],
-iframe[src*="ethical"],
-div[class*="ad-"],
-div[id*="ad-"],
-div[class*="ads-"],
-div[id*="ads-"] {
-    display: none !important;
-}
-
-/* Видаляємо простір від прихованих елементів */
-.wy-nav-content-wrap {
-    margin-left: 300px !important;
-}
-
-/* Покращуємо відображення контенту без реклами */
-.wy-nav-content {
-    max-width: none !important;
-    padding: 1.618em 3.236em;
-}
-
-/* Фіксимо можливі проблеми з відступами */
-.rst-content {
-    width: 100%;
-    padding-right: 0;
-}
-
-/* ============= ПРИХОВУВАННЯ НАВІГАЦІЙНИХ ЕЛЕМЕНТІВ ============= */
-
-/* 1. Приховування посилання "View page source" */
-.wy-breadcrumbs li.wy-breadcrumbs-aside {
-    display: none !important;
-}
-
-/* Альтернативні селектори для View page source */
-a[href*="_sources/"],
-a[title*="View page source"],
-.wy-breadcrumbs-aside a {
-    display: none !important;
-}
-
-/* 2. Приховування кнопок Previous та Next */
-.rst-footer-buttons {
-    display: none !important;
-}
-
-/* Альтернативні селектори для кнопок навігації */
-.btn-neutral[rel="prev"],
-.btn-neutral[rel="next"],
-.fa-arrow-circle-left,
-.fa-arrow-circle-right {
-    display: none !important;
-}
-
-/* Приховування навігаційних посилань в футері */
-.rst-content .document .footer {
-    display: none !important;
-}
-
-/* Додатковий контроль для кнопок навігації */
-nav[role="navigation"] .btn,
-.pagination {
-    display: none !important;
-}
-
-/* ============= ПРИХОВУВАННЯ ВЕРСІЙНИХ ЕЛЕМЕНТІВ ============= */
-
-/* Приховування верхньої навігаційної панелі для мобільних */
-.wy-nav-top {
-    display: none !important;
-    height: 0 !important;
-}
-
-/* Приховування індикатора версії, але НЕ заголовка проекту */
-.wy-side-nav-search .version {
-    display: none !important;
-}
-
-/* Приховування версійного селектора ReadTheDocs */
-.rst-versions,
-.rst-other-versions,
-.rst-current-version {
-    display: none !important;
-}
-
-/* Приховування версійної інформації в футері */
-.version-info,
-.rst-versions .rst-current-version,
-div[data-toggle="rst-versions"] {
-    display: none !important;
-}
-
-/* Додаткові селектори для версійних елементів - більш специфічні */
-.rst-versions div[class*="version"],
-.rst-versions span[class*="version"],
-.rst-versions .badge,
-.label-version {
-    display: none !important;
-}
-
-/* Приховування ReadTheDocs floating panel */
-.rst-versions.rst-badge {
-    display: none !important;
-}
-
-/* Компенсуємо відсутність верхньої панелі */
-.wy-nav-content-wrap {
-    margin-top: 0 !important;
-}
-
-.wy-nav-side {
-    top: 0 !important;
-}
-
-/* ============= ЗАМІНА ІКОНКИ БУДИНКА НА ПЕРО ============= */
-
-/* Приховуємо оригінальну іконку будинка */
-.wy-side-nav-search > a .fa-home,
-.wy-side-nav-search > a .fa-house,
-.wy-side-nav-search > a .icon-home {
-    display: none !important;
-}
-
-/* Додаємо іконку пера перед текстом "Portfolio Troynin Mikhailo" */
-.wy-side-nav-search > a:before {
-    content: "🖋️"; /* Unicode символ перьєвої ручки */
-    font-size: 16px;
-    margin-right: 8px;
-    vertical-align: middle;
-    color: white !important;
-}
-
-/* Забезпечуємо правильне вирівнювання та видимість тексту заголовка */
-.wy-side-nav-search > a {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    color: white !important;
-    text-decoration: none !important;
-    font-weight: bold !important;
-}
-
-/* Забезпечуємо видимість пошукового блоку */
-.wy-side-nav-search {
-    display: block !important;
-    visibility: visible !important;
-    background-color: var(--primary-dark) !important;
-    padding: 0.809em;
-}
-
-/* Забезпечуємо видимість поля пошуку */
-.wy-side-nav-search input[type=text] {
-    display: block !important;
-    visibility: visible !important;
-    width: 100%;
-    padding: 6px 12px;
-    margin-top: 0.5rem;
-}
-
-/* Мобільна версія */
+/* Мобільна версія - оновлена для нового кольору */
 @media screen and (max-width: 768px) {
     .wy-nav-content-wrap {
         margin-left: 0 !important;
@@ -488,66 +337,33 @@ div[data-toggle="rst-versions"] {
     .wy-side-nav-search > a:before {
         font-size: 14px;
         margin-right: 6px;
+        color: var(--text-dark) !important; /* ЗМІНА: темний колір на мобільних */
     }
 
     /* Білий фон для лівої панелі на мобільних */
     .wy-nav-side {
         background-color: var(--bg-white) !important;
     }
+    
+    /* Адаптація поля пошуку для мобільних */
+    .wy-side-nav-search input[type=text] {
+        padding: 6px 10px !important;
+        font-size: 13px !important;
+    }
 }
 
-/* ============= АНІМАЦІЇ ТА ПЕРЕХОДИ ============= */
-
-/* Плавні переходи для навігації */
-.wy-menu-vertical a {
-    transition: all 0.3s ease !important;
-}
-
-/* Анімація з'явлення контенту */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.rst-content > * {
-    animation: fadeIn 0.6s ease-out forwards;
-}
-
-/* ============= ДОДАТКОВІ ПРАВИЛА ДЛЯ READTHEDOCS.ORG ============= */
-
-/* Приховування елементів ReadTheDocs.org */
-.injected .rst-versions,
-.theme-switcher,
-.ethical-ad,
-.keep-us-sustainable {
-    display: none !important;
-}
-
-/* Приховування "Built with Sphinx" */
-.footer p {
-    display: none !important;
-}
-
-/* Приховування посилань на джерела */
-.headerlink {
-    display: none !important;
-}
-
-/* Додаткові покращення UX */
-.wy-side-nav-search input[type=text]::placeholder {
-    color: rgba(255,255,255,0.7) !important;
-}
-
-/* Покращення відображення пошуку */
+/* Покращуємо відображення пошуку - випадаюче меню */
 .wy-side-nav-search .wy-dropdown {
     background-color: var(--bg-white) !important;
-    border: 1px solid var(--border-color) !important;
+    border: 1px solid var(--search-border) !important;
     border-radius: 8px !important;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+    margin-top: 4px !important;
 }
 
 .wy-side-nav-search .wy-dropdown > a {
     color: var(--text-dark) !important;
+    padding: 8px 12px !important;
 }
 
 .wy-side-nav-search .wy-dropdown > a:hover {
