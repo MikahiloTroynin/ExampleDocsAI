@@ -43,21 +43,21 @@ html_js_files = [
     'remove-ads.js',
 ]
 
-# Додаткові опції для теми RTD
+# Додаткові опції для теми RTD - ВИПРАВЛЕНО ДЛЯ НАВІГАЦІЇ
 html_theme_options = {
     'analytics_id': '',  # Власний Google Analytics ID (опціонально)
     'analytics_anonymize_ip': False,
     'logo_only': False,
-    'display_version': False,  # ЗМІНЕНО: приховуємо відображення версії
+    'display_version': False,  # Приховуємо відображення версії
     'prev_next_buttons_location': None,  # Прибираємо кнопки Previous/Next
     'style_external_links': False,
     'style_nav_header_background': '#2980B9',
-    # Ключові налаштування для контролю навігації
-    'collapse_navigation': False,
-    'sticky_navigation': True,
-    'navigation_depth': 1,  # Показувати лише перший рівень
-    'includehidden': True,
-    'titles_only': True     # Показувати лише заголовки документів
+    # КЛЮЧОВІ НАЛАШТУВАННЯ ДЛЯ ВКЛАДЕНОЇ НАВІГАЦІЇ
+    'collapse_navigation': False,        # НЕ згортати навігацію
+    'sticky_navigation': True,           # Залишити навігацію липкою
+    'navigation_depth': 4,               # ЗМІНЕНО: Показувати до 4 рівнів глибини
+    'includehidden': True,               # Включати приховані елементи
+    'titles_only': False                 # ЗМІНЕНО: Показувати всі елементи, не тільки заголовки
 }
 
 # ============= ДОДАТКОВІ НАЛАШТУВАННЯ ДЛЯ ПРИХОВУВАННЯ ПІДВАЛА =============
