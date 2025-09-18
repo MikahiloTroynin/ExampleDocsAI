@@ -10,7 +10,7 @@ Welcome to Mikhail Troinin Portfolio!
    :caption: Documentation examples
    :hidden:
 
-   business process
+   business processes
    api methods
    product architecture
    product specification
